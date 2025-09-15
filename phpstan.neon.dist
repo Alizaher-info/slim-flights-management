@@ -17,7 +17,7 @@ parameters:
         # Doctrine Entities
         - '#Property [a-zA-Z0-9\_]+::\$id is never written, only read#'
         # PSR-7
-        - '#Call to an undefined method Psr\Http\Message\#'
+        - '#Call to an undefined method Psr\\\\Http\\\\Message\\\\.*#'
 
     # Basis-Regeln
     checkMissingIterableValueType: false
