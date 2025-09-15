@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -20,7 +20,7 @@ class FlightController extends ApiController
 
     public function getFlightById(Request $request, Response $response, array $args): Response
     {
-        $flightId = (int)$args['id'];
+        $flightId = (int) $args['id'];
         $flight = $this->entityManager->getRepository(Flight::class)->find($flightId);
 
         if (!$flight) {

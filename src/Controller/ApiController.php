@@ -7,7 +7,7 @@ namespace App\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-abstract class ApiController 
+abstract class ApiController
 {
     public function __construct(
         protected EntityManagerInterface $entityManager,
