@@ -1,0 +1,49 @@
+version: 2
+updates:
+  # Composer Dependencies für PHP
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Berlin"
+    # Limits
+    open-pull-requests-limit: 10
+    # Labels für Pull Requests
+    labels:
+      - "dependencies"
+      - "php"
+    # Target Branch
+    target-branch: "develop"
+    # Version Strategie
+    versioning-strategy: "auto"
+    # Ignore bestimmte Dependencies
+    ignore:
+      # Major Updates für kritische Pakete
+      - dependency-name: "doctrine/orm"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "slim/slim"
+        update-types: ["version-update:semver-major"]
+    
+    # Gruppen von Updates
+    groups:
+      # Doctrine Updates zusammen
+      doctrine:
+        patterns:
+          - "doctrine/*"
+      # PHPUnit und Testing
+      testing:
+        patterns:
+          - "phpunit/*"
+          - "phpstan/*"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"

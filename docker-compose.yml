@@ -1,0 +1,18 @@
+version: '3.7'
+
+volumes:
+    logs:
+        driver: local
+
+services:
+    db:
+        image: mysql:8.0
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: flights
+            MYSQL_USER: slim
+            MYSQL_PASSWORD: slim
+        ports:
+            - "3307:3306"
+        volumes:
+            - ./db_data:/var/lib/mysql

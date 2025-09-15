@@ -1,0 +1,39 @@
+.idea/
+.vscode/
+/coverage/
+/vendor/
+/logs/*
+!/logs/README.md
+.phpunit.result.cache
+phpstan.neon
+/var/
+.env.local
+
+# Database files
+/db_data/
+*.sock
+*.pid
+*.log
+*.err
+*.cnf
+*.pem
+*.dblwr
+/db_data/mysql.sock
+/db_data/#innodb_temp/
+/db_data/#innodb_redo/
+/db_data/mysql/
+/db_data/performance_schema/
+/db_data/sys/
+/db_data/ib_buffer_pool
+/db_data/ibdata1
+/db_data/undo_*
+/db_data/binlog.*
+/db_data/ibtmp1
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Cache
+/var/cache/
+*.cache
