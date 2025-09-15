@@ -22,10 +22,6 @@ parameters:
     # Basis-Regeln
     checkMissingIterableValueType: false
 
-    # Doctrine Support
-    doctrine:
-        objectManagerLoader: tests/object-manager.php
-
     # Autoloader
     bootstrapFiles:
         - vendor/autoload.php
