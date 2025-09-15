@@ -1,4 +1,6 @@
-# Flights API with Slim 4 and Doctrine ORM
+# Flight Management API with Slim and Doctrine
+
+[![CI Pipeline](https://github.com/Alizaher-info/slim-flights-management/actions/workflows/ci.yml/badge.svg)](https://github.com/Alizaher-info/slim-flights-management/actions/workflows/ci.yml)
 
 This project implements a RESTful API for managing flights using Slim 4 Framework and Doctrine ORM.
 

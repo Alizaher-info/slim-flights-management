@@ -20,12 +20,17 @@ jobs:
           MYSQL_USER: slim
           MYSQL_PASSWORD: slim
         ports:
-          - 3307:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -u slim --password=slim"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+          --health-start-period=30s
 
     strategy:
       matrix:
-        php-versions: ['8.0', '8.1', '8.2']
+        php-versions: ['8.2', '8.3']
 
     steps:
     - uses: actions/checkout@v3
@@ -50,11 +55,30 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install Dependencies
-      run: composer install --prefer-dist --no-progress
+      run: |
+        composer config platform.php 8.2
+        composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Wait for MySQL
+      run: |
+        while ! mysql -h"127.0.0.1" -P"3306" -u"slim" -p"slim" -e "SELECT 1" >/dev/null 2>&1; do
+          echo "Waiting for MySQL to be ready..."
+          sleep 1
+        done
+        echo "MySQL is ready!"
+        
     - name: Run Database Migrations
       run: |
-        composer migrations:migrate --no-interaction
+        cp migrations-db.ci.php migrations-db.php
+        mysql -h"127.0.0.1" -P"3306" -u"slim" -p"slim" -e "SHOW DATABASES;"
+        composer migrations:migrate --no-interaction -vvv
+      env:
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_DATABASE: flights
+        DB_USERNAME: slim
+        DB_PASSWORD: slim
+        MYSQL_PWD: slim
 
     - name: Check Code Style
       run: |
