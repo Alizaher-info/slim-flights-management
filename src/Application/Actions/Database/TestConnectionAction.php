@@ -24,7 +24,6 @@ class TestConnectionAction extends Action
     protected function action(): Response
     {
         try {
-
             $connection = $this->entityManager->getConnection();
             $result = $connection->executeQuery('SELECT 1');
             $databasePlatform = $connection->getDatabasePlatform();
