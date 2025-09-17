@@ -11,6 +11,7 @@ This project implements a RESTful API for managing flights using Slim 4 Framewor
 - Doctrine ORM 3
 - MySQL 8.0 (via Docker)
 - Symfony Serializer Component
+- Content Negotiation Support (JSON/XML/HTML)
 
 ## Project Setup
 
@@ -74,7 +75,24 @@ Default database settings:
 ### GET /flights
 Retrieves all flights
 
-Response format:
+Supports content negotiation through the `Accept` header:
+- `application/json` (default)
+- `application/xml`
+- `text/html`
+
+Example requests:
+```bash
+# Get JSON response (default)
+curl -H "Accept: application/json" http://localhost:8080/flights
+
+# Get XML response
+curl -H "Accept: application/xml" http://localhost:8080/flights
+
+# Get HTML response
+curl -H "Accept: text/html" http://localhost:8080/flights
+```
+
+JSON Response format:
 ```json
 [
     {

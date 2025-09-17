@@ -17,17 +17,10 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
-    });
 
     $app->get('/flights', [FlightController::class, 'getAllFlights']);
     $app->get('/flights/{id}', [FlightController::class, 'getFlightById']);
     $app->get('/test-db', \App\Application\Actions\Database\TestConnectionAction::class);
 
-    $app->group('/users', function (Group $group) {
-        $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
-    });
+  
 };
