@@ -15,8 +15,7 @@ class ContentNegotiator implements ContentNegotiatorInterface
 
         // Default to JSON if no Accept header is present
         if (empty($acceptHeader)) {
-            $request = $request->withAttribute('content-type', ContentType::JSON->value);
-            return $request;
+            return $request->withAttribute('content-type', ContentType::JSON->value);
         }
 
         // Parse Accept header and get the best matching format
@@ -25,7 +24,6 @@ class ContentNegotiator implements ContentNegotiatorInterface
         foreach ($requestFormats as $requestFormat) {
             // Remove quality value if present (e.g., "application/json;q=0.8" -> "application/json")
             $format = explode(';', $requestFormat)[0];
-
             $contentType = ContentType::tryFrom($format);
             if ($contentType !== null) {
                 return $request->withAttribute('content-type', $contentType->value);

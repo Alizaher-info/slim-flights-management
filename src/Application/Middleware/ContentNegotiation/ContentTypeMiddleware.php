@@ -18,7 +18,6 @@ readonly class ContentTypeMiddleware implements MiddlewareInterface
     public function process(Request $request, RequestHandler $handler): Response
     {
         $request = $this->contentNegotiator->negotiate($request);
-        
         $response = $handler->handle($request);
 
         return $response->withHeader('Content-Type', $request->getAttribute('content-type'));
