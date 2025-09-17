@@ -6,22 +6,21 @@ namespace App\Application\Middleware\ContentNegotiation;
 
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request ;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-
 
 readonly class ContentTypeMiddleware implements MiddlewareInterface
 {
-    
     public function __construct(private ContentNegotiator $contentNegotiator)
     {
     }
+
     public function process(Request $request, RequestHandler $handler): Response
     {
-       $request = $this->contentNegotiator->negotiate($request);
-      
-       $response = $handler->handle($request);
+        $request = $this->contentNegotiator->negotiate($request);
+        
+        $response = $handler->handle($request);
 
-       return $response->withHeader('Content-Type', $request->getAttribute('content-type'));
+        return $response->withHeader('Content-Type', $request->getAttribute('content-type'));
     }
 }
