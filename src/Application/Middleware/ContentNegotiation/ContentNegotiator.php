@@ -21,11 +21,11 @@ class ContentNegotiator implements ContentNegotiatorInterface
 
         // Parse Accept header and get the best matching format
         $requestFormats = array_map('trim', explode(',', $acceptHeader));
-        
+
         foreach ($requestFormats as $requestFormat) {
             // Remove quality value if present (e.g., "application/json;q=0.8" -> "application/json")
             $format = explode(';', $requestFormat)[0];
-            
+
             $contentType = ContentType::tryFrom($format);
             if ($contentType !== null) {
                 return $request = $request->withAttribute('content-type', $contentType->value);
@@ -33,6 +33,6 @@ class ContentNegotiator implements ContentNegotiatorInterface
         }
 
         // If no supported format is found, default to JSON
-     return $request = $request->withAttribute('content-type', ContentType::JSON->value);
-   }
+        return $request = $request->withAttribute('content-type', ContentType::JSON->value);
+    }
 }

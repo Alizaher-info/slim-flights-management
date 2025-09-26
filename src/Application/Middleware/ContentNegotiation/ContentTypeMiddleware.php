@@ -10,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface as Request ;
 use App\Application\Middleware\ContentNegotiation\ContentType;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 
-
 class ContentTypeMiddleware implements MiddlewareInterface
 {
     // Middleware implementation goes here
@@ -18,20 +17,18 @@ class ContentTypeMiddleware implements MiddlewareInterface
     {
         // Get the Accept header from the request
         $acceptHeader = $request->getHeaderLine('Accept');
-      
-       $requestFormats = explode(',',$acceptHeader);
-        foreach($requestFormats as $requestFormat)
-        {
+
+        $requestFormats = explode(',', $acceptHeader);
+        foreach ($requestFormats as $requestFormat) {
             $format = ContentType::tryFrom(trim($requestFormat));
             if ($format !== null) {
                 $request = $request->withAttribute('Content-Type', $format);
                 break;
             }
             $request = $request->withAttribute('Content-Type', ContentType::JSON);
-
         }
         {
-         
+
         }
         // Call the next middleware or request handler
         return $handler->handle($request);
