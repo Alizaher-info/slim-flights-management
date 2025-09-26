@@ -15,7 +15,7 @@ class FlightController extends ApiController
         $flights = $this->entityManager->getRepository(Flight::class)->findAll();
         $data = $this->serializer->serialize(['flights' => $flights], 'json');
         $response->getBody()->write($data);
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response;
     }
 
     public function getFlightById(Request $request, Response $response, array $args): Response
@@ -24,12 +24,13 @@ class FlightController extends ApiController
         $flight = $this->entityManager->getRepository(Flight::class)->find($flightId);
 
         if (!$flight) {
-            $response->getBody()->write(json_encode(['error' => 'Flight not found']));
-            return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
+            $error = $this->serializer->serialize(['error' => 'Flight not found'], 'json');
+            $response->getBody()->write($error);
+            return $response->withStatus(404);
         }
 
         $data = $this->serializer->serialize(['flight' => $flight], 'json');
         $response->getBody()->write($data);
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response;
     }
 }
