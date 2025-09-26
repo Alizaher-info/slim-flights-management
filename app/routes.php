@@ -5,8 +5,6 @@ declare(strict_types=1);
 use Slim\App;
 use App\Entity\Flight;
 use App\Controller\FlightController;
-use App\Application\Actions\User\ViewUserAction;
-use App\Application\Actions\User\ListUsersAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
