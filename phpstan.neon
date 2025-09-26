@@ -1,0 +1,3 @@
+parameters:
+    ignoreErrors:
+        - '#Property App\\Entity\\Flight::\$id is never written, only read.#'
