@@ -1,39 +1,38 @@
+# IDE
 .idea/
 .vscode/
-/coverage/
+
+# Composer
 /vendor/
+composer.phar
+
+# PHP
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# Project specific
+/coverage/
 /logs/*
 !/logs/README.md
-.phpunit.result.cache
-phpstan.neon
-/var/
-.env.local
+/var/*
+!/var/cache
+/var/cache/*
+!/var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!/var/logs/.gitkeep
 
-# Database files
+# Database
 /db_data/
-*.sock
-*.pid
-*.log
-*.err
-*.cnf
-*.pem
-*.dblwr
-/db_data/mysql.sock
-/db_data/#innodb_temp/
-/db_data/#innodb_redo/
-/db_data/mysql/
-/db_data/performance_schema/
-/db_data/sys/
-/db_data/ib_buffer_pool
-/db_data/ibdata1
-/db_data/undo_*
-/db_data/binlog.*
-/db_data/ibtmp1
+*.sql
+*.sqlite
+*.sqlite3
 
-# Docker
-.docker/
-docker-compose.override.yml
+# Environment
+.env
+.env.local
+.env.*.local
 
-# Cache
-/var/cache/
-*.cache
+# Misc
+.DS_Store
+Thumbs.db

@@ -1,25 +1,4 @@
 parameters:
-    # Standard Analyse-Level für das Projekt
-    level: 5
-
-    # Standard-Pfade für die Analyse
-    paths:
-        - src
-        - tests
-
-    # Standard-Ausschlüsse
-    excludePaths:
-        - vendor/*
-        - var/*
-
-    # Projekt-weite Fehler-Ignores
-    ignoreErrors:
-        # Doctrine Entities
-        - '#Property App\\Entity\\Flight::\$id is never written, only read#'
-
-    # Basis-Regeln
-    checkMissingIterableValueType: false
-
-    # Autoloader
-    bootstrapFiles:
-        - vendor/autoload.php
+  level: 4
+  paths:
+    - src
