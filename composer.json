@@ -30,7 +30,7 @@
         "monolog/monolog": "^2.8",
         "php-di/php-di": "^6.4",
         "slim/psr7": "^1.5",
-        "slim/slim": "^4.10",
+        "slim/slim": "^4.15",
         "symfony/cache": "^7",
         "symfony/property-access": "^7.3",
         "symfony/serializer": "^7.3"
